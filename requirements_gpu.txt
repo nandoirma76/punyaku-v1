@@ -1,0 +1,37 @@
+# punyaku-v1 - GPU / AI acceleration requirements
+# Install ON TOP of requirements.txt only if a CUDA-capable GPU is present.
+#
+# CUDA build of PyTorch must match your installed CUDA toolkit. The default
+# CUDA 12.1 wheels are listed below; switch via the --index-url override
+# in setup.bat / setup.sh based on the detected toolkit.
+#
+# Example manual install:
+#   pip install torch torchvision torchaudio \
+#       --index-url https://download.pytorch.org/whl/cu121
+#
+# The line below works without --index-url for the default CPU wheels too,
+# but the .bat/.sh installer will swap the index when a GPU is detected.
+
+torch>=2.2
+torchvision>=0.17
+torchaudio>=2.2
+
+# ONNX Runtime (GPU)
+onnxruntime-gpu>=1.17
+
+# GPU monitoring
+GPUtil>=1.4.0
+nvidia-ml-py>=12.535
+pynvml>=11.5
+
+# Pre-trained model helpers (used by AI plugins; weights downloaded on demand)
+huggingface-hub>=0.22
+safetensors>=0.4
+
+# Optional: AI super-resolution / restoration helpers (heavy)
+# Uncomment to enable bundled support; otherwise these are installed lazily
+# by app.ai.upscale.* / app.ai.restoration.* when the feature is first used.
+# realesrgan>=0.3
+# basicsr>=1.4
+# gfpgan>=1.3
+# facexlib>=0.3

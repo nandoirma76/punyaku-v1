@@ -1,0 +1,11 @@
+# punyaku-v1 - CPU-only AI fallback requirements
+# Install ON TOP of requirements.txt if no CUDA GPU is available.
+
+torch>=2.2
+torchvision>=0.17
+torchaudio>=2.2
+
+onnxruntime>=1.17
+
+huggingface-hub>=0.22
+safetensors>=0.4

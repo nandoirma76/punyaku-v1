@@ -1,0 +1,83 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "punyaku-v1"
+version = "0.1.0"
+description = "AI-powered professional seamless video looping studio."
+readme = "README.md"
+license = { text = "MIT" }
+authors = [{ name = "nandoirma" }]
+requires-python = ">=3.10"
+keywords = [
+    "video",
+    "loop",
+    "ai",
+    "ffmpeg",
+    "pyqt",
+    "music-visualizer",
+    "live-stream",
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: X11 Applications :: Qt",
+    "Intended Audience :: End Users/Desktop",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: Microsoft :: Windows",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Multimedia :: Video",
+    "Topic :: Multimedia :: Sound/Audio",
+]
+
+[project.scripts]
+punyaku = "app.__main__:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["app*"]
+exclude = ["tests*", "build*", "dist*"]
+
+[tool.ruff]
+line-length = 110
+target-version = "py310"
+extend-exclude = [
+    "build",
+    "dist",
+    "models",
+    "cache",
+    "temp",
+    "logs",
+    "export",
+]
+
+[tool.ruff.lint]
+select = [
+    "E",   # pycodestyle errors
+    "F",   # pyflakes
+    "W",   # pycodestyle warnings
+    "I",   # isort
+    "UP",  # pyupgrade
+    "B",   # bugbear
+    "C4",  # comprehensions
+    "SIM", # simplify
+]
+ignore = [
+    "E501",  # long lines handled by formatter
+    "B008",  # function calls in defaults (PyQt patterns)
+    "SIM108",
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["B", "SIM"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+filterwarnings = [
+    "ignore::DeprecationWarning",
+]
